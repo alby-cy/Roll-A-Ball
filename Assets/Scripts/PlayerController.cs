@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
     private Rigidbody rb;
-    private int pickupCount;
+    private int pickUpCount;
+    private int totalPickUps;
+    private int curPickupCount = 0;
     private Timer timer;
     public bool isPaused = false; //Private this <--- public for testing only
+    private float pickUpBarNum = 0;
+    public Image pickUpBar;
+
 
     [Header("UI")]
     public TMP_Text pickUpText;
@@ -26,7 +32,8 @@ public class PlayerController : MonoBehaviour
         resetUI();
         rb = GetComponent<Rigidbody>();
         //get total pickups in scene
-        pickupCount = GameObject.FindGameObjectsWithTag("Pickup").Length;
+        pickUpCount = GameObject.FindGameObjectsWithTag("Pickup").Length;
+        totalPickUps = pickUpCount;
         //run check pickups funct
         CheckPickups();
         //get Timer object and start timer
@@ -62,7 +69,9 @@ public class PlayerController : MonoBehaviour
             //destroy collided object
             Destroy(other.gameObject);
             //decrement pickup count
-            pickupCount--;
+            pickUpCount--;
+            //increast picked-up amount
+            curPickupCount++;
             //run check pickups funct
             CheckPickups();
         }
@@ -70,9 +79,14 @@ public class PlayerController : MonoBehaviour
 
     void CheckPickups()
     {
-        pickUpText.text = "Bingus: " + pickupCount;
+        pickUpText.text = "Bingus: " + pickUpCount;
+        pickUpBarNum = Mathf.InverseLerp(0, totalPickUps, curPickupCount);
+        Debug.Log("pickUpBarNum " +pickUpBarNum);
+        Debug.Log("pickUpCount " + pickUpCount);
+        Debug.Log("curPickUpCount " + curPickupCount);
+        pickUpBar.fillAmount = pickUpBarNum;
         //win condition:
-        if (pickupCount <= 0 ) {
+        if (pickUpCount <= 0 ) {
             Win();
         };
     }
