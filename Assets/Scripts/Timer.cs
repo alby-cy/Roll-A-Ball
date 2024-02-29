@@ -6,11 +6,15 @@ public class Timer : MonoBehaviour
 {
     public float curTime;
     private bool isTiming;
+    private float minutes;
+    private float seconds;
+    private string clockTime;
 
     public void StartTimer() { isTiming = true; }
     public void EndTimer() { isTiming = false; }
 
     public float GetTime() { return curTime; }
+    public string GetClock() { return clockTime; }
 
     // Update is called once per frame
     void Update()
@@ -18,6 +22,9 @@ public class Timer : MonoBehaviour
         if (isTiming)
         {
             curTime += Time.deltaTime;
+            minutes = Mathf.FloorToInt(curTime/60);
+            seconds = Mathf.FloorToInt(curTime%60);
+            clockTime = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 }
