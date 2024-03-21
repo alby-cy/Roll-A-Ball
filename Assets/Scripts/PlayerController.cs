@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckPickups()
     {
-        pickUpText.text = "Bingus: " + pickUpCount;
+        pickUpText.text = "Coins: " + pickUpCount;
         pickUpBarNum = Mathf.InverseLerp(0, totalPickUps, curPickupCount);
         Debug.Log("pickUpBarNum " +pickUpBarNum);
         Debug.Log("pickUpCount " + pickUpCount);

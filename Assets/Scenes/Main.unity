@@ -641,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bingus: 00'
+  m_text: 'Coins: 00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46fde1e1020f7814cbd54efe1c083d73, type: 2}
   m_sharedMaterial: {fileID: 1363176796275007145, guid: 46fde1e1020f7814cbd54efe1c083d73, type: 2}
@@ -1400,7 +1400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &339493249
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3408,7 +3408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &864707566
 Camera:
   m_ObjectHideFlags: 0
@@ -13544,7 +13544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2070158046
 Transform:
   m_ObjectHideFlags: 0
