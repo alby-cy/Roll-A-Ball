@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: '[NAAAAA] Studio'
   productName: Roll-A-Ball
-  defaultCursor: {fileID: 2800000, guid: 851353e3126c22a4a9382eb3f10715a2, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 7e95225e26e4dab40859b25930d00900, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.17652203, g: 0.13305447, b: 0.24528301, a: 1}
   m_ShowUnitySplashScreen: 1
