@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Movement, but only when the game is NOT paused :)
         if (isPaused) { }else {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");

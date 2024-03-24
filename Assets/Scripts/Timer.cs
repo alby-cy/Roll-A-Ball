@@ -22,8 +22,10 @@ public class Timer : MonoBehaviour
         if (isTiming)
         {
             curTime += Time.deltaTime;
+            //calculate minutes and seconds
             minutes = Mathf.FloorToInt(curTime/60);
             seconds = Mathf.FloorToInt(curTime%60);
+            //display clockTime as MM:SS where M=Minutes and S=Seconds
             clockTime = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
