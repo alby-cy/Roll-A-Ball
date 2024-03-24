@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        //timerText.text = timer.GetTime().ToString("#.");
+        //OLD CODE: timerText.text = timer.GetTime().ToString("#.");
         timerText.text = timer.GetClock();
     }
 
@@ -79,12 +79,10 @@ public class PlayerController : MonoBehaviour
     void CheckPickups()
     {
         pickUpText.text = "Coins: " + pickUpCount;
+        //total pickup bar calc and display
         pickUpBarNum = Mathf.InverseLerp(0, totalPickUps, curPickupCount);
-        Debug.Log("pickUpBarNum " +pickUpBarNum);
-        Debug.Log("pickUpCount " + pickUpCount);
-        Debug.Log("curPickUpCount " + curPickupCount);
         pickUpBar.fillAmount = pickUpBarNum;
-        //win condition:
+        //call win condition when all coins collected:
         if (pickUpCount <= 0 ) {
             Win();
         };
@@ -98,7 +96,7 @@ public class PlayerController : MonoBehaviour
         inGamePanel.SetActive(false);
         winPanel.SetActive(true);
         //set results
-        winTimerText.text = timer.GetClock() + "s";
+        winTimerText.text = timer.GetClock() + "ˢ";
         winTimerText.color = Color.green;
         //stop ball
         rb.velocity = Vector3.zero;
