@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2418549035318821494}
   m_Layer: 0
   m_Name: OutsideBend_LP1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

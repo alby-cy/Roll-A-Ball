@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public GameObject winPanel;
     public TMP_Text winTimerText;
 
-    // Start is called before the first frame update
     void Start()
     {
         //enable in-game ui, disable win screen ui
@@ -104,14 +103,4 @@ public class PlayerController : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    //TEMP - Remove during Assess2
-    public void RestartGame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }
