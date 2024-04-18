@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     public GameObject winPanel;
     public TMP_Text winTimerText;
 
+    [Header("Teleporters")]
+    public GameObject playerCamera;
+    public GameObject telePoint;
+
     void Start()
     {
         //enable in-game ui, disable win screen ui
@@ -56,11 +60,13 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
         rb.AddForce(movement * speed);  
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pickup" ) {
+        if (other.tag == "Pickup" ) //Pickup Collection
+        {
             //destroy collided object
             Destroy(other.gameObject);
             //decrement pickup count
@@ -69,6 +75,28 @@ public class PlayerController : MonoBehaviour
             curPickupCount++;
             //run check pickups funct
             CheckPickups();
+        }else if (other.tag == "Teleporter") //Teleporter Management
+        {
+            StartCoroutine(TeleportPlayer());
+        }
+    }
+
+    public IEnumerator TeleportPlayer()
+    {
+        rb.velocity = Vector3.zero;
+        transform.position = telePoint.transform.position;
+
+        Vector3 startPos = playerCamera.transform.position;
+        Vector3 endPos = new Vector3(telePoint.transform.position.x, telePoint.transform.position.y + 20, telePoint.transform.position.z);
+        float resetSpeed = 2f;
+        var i = 0.0f;
+        var rate = 1.0f / resetSpeed;
+
+        while (i < 0.3f)
+        {
+            i += Time.deltaTime * rate;
+            playerCamera.transform.position = Vector3.Lerp(startPos, endPos, i);
+            yield return null;
         }
     }
 
