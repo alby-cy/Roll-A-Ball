@@ -12,12 +12,12 @@ public class PlayerController : MonoBehaviour
     private int totalPickUps;
     private int curPickupCount = 0;
     private Timer timer;
-    public bool isPaused = false; //Private this <--- public for testing only
     private float pickUpBarNum = 0;
     public Image pickUpBar;
 
 
     [Header("UI")]
+    public SceneController menuManager;
     public TMP_Text pickUpText;
     public TMP_Text timerText;
     public GameObject inGamePanel;
@@ -45,21 +45,17 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        //OLD CODE: timerText.text = timer.GetTime().ToString("#.");
         timerText.text = timer.GetClock();
+        if (Input.GetKeyDown(KeyCode.Escape)) { menuManager.TogglePause(); }
     }
 
     void FixedUpdate()
     {
-        //Movement, but only when the game is NOT paused :)
-        if (isPaused) { }else {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-            rb.AddForce(movement * speed);
-        }
-        
+        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+        rb.AddForce(movement * speed);  
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
     void Win()
     {
-        isPaused = true;
         timer.EndTimer();
         //remove UI and show win screen
         inGamePanel.SetActive(false);
