@@ -77,26 +77,8 @@ public class PlayerController : MonoBehaviour
             CheckPickups();
         }else if (other.tag == "Teleporter") //Teleporter Management
         {
-            StartCoroutine(TeleportPlayer());
-        }
-    }
-
-    public IEnumerator TeleportPlayer()
-    {
-        rb.velocity = Vector3.zero;
-        transform.position = telePoint.transform.position;
-
-        Vector3 startPos = playerCamera.transform.position;
-        Vector3 endPos = new Vector3(telePoint.transform.position.x, telePoint.transform.position.y + 20, telePoint.transform.position.z);
-        float resetSpeed = 2f;
-        var i = 0.0f;
-        var rate = 1.0f / resetSpeed;
-
-        while (i < 0.3f)
-        {
-            i += Time.deltaTime * rate;
-            playerCamera.transform.position = Vector3.Lerp(startPos, endPos, i);
-            yield return null;
+            rb.velocity = Vector3.zero;
+            transform.position = telePoint.transform.position;
         }
     }
 
