@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             curPickupCount++;
             //run check pickups funct
             CheckPickups();
-        }else if (other.tag == "Teleporter") //Teleporter Management
+        }else if (other.tag == "Teleporter") //Teleport Management
         {
             rb.velocity = Vector3.zero;
             transform.position = telePoint.transform.position;
