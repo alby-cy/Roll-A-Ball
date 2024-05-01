@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Wall
   - Teleporter
+  - TimeCoin
   layers:
   - Default
   - TransparentFX

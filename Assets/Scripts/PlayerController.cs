@@ -15,6 +15,14 @@ public class PlayerController : MonoBehaviour
     private float pickUpBarNum = 0;
     public Image pickUpBar;
 
+    [Header("Bonus Collectables")]
+    private int timeCoins = 0;
+    private int speedCoins = 0;
+    private int sizeCoins = 0;
+    public TMP_Text timeCoinCount;
+    public TMP_Text speedCoinCount;
+    public TMP_Text sizeCoinCount;
+
 
     [Header("UI")]
     public SceneController menuManager;
@@ -41,6 +49,8 @@ public class PlayerController : MonoBehaviour
         //get Timer object and start timer
         timer = FindObjectOfType<Timer>();
         timer.StartTimer();
+        //reset bonus coins collected
+        timeCoins = 0; speedCoins = 0; sizeCoins = 0;
     }
     void resetUI()
     {
@@ -79,6 +89,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             transform.position = telePoint.transform.position;
+        }else if (other.tag == "TimeCoin")
+        {
+            //todo
+            timeCoins += 1;
+            Destroy(other.gameObject);
         }
     }
 
@@ -103,6 +118,7 @@ public class PlayerController : MonoBehaviour
         //set results
         winTimerText.text = timer.GetClock() + "ˢ";
         winTimerText.color = Color.green;
+        timeCoinCount.text = "x " + timeCoins;
         //stop ball
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
