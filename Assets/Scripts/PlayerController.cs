@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private int speedCoins = 0;
     private int sizeCoins = 0;
     public TMP_Text timeCoinCount;
+    public int timeCoinValue = 5;
+    public TMP_Text timeRemoved;
     public TMP_Text speedCoinCount;
     public TMP_Text sizeCoinCount;
 
@@ -91,9 +93,9 @@ public class PlayerController : MonoBehaviour
             transform.position = telePoint.transform.position;
         }else if (other.tag == "TimeCoin")
         {
-            //todo
             timeCoins += 1;
             Destroy(other.gameObject);
+            timer.RemoveTime(timeCoinValue);
         }
     }
 
@@ -118,7 +120,18 @@ public class PlayerController : MonoBehaviour
         //set results
         winTimerText.text = timer.GetClock() + "ˢ";
         winTimerText.color = Color.green;
+        if (timeCoins > 0) {
+            timeCoinCount.color = Color.green;
+        }
+        if (speedCoins > 0) {
+            speedCoinCount.color = Color.green;
+        }
+        if (sizeCoins > 0) {
+            sizeCoinCount.color = Color.green;
+        }
         timeCoinCount.text = "x " + timeCoins;
+        timeRemoved.color = Color.red;
+        timeRemoved.text = "- "+ (timeCoins * timeCoinValue) + "ˢ";
         //stop ball
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     public void EndTimer() { isTiming = false; }
 
     public float GetTime() { return curTime; }
+    public void RemoveTime(float rTime) {curTime -= rTime; }
     public string GetClock() { return clockTime; }
 
     // Update is called once per frame
