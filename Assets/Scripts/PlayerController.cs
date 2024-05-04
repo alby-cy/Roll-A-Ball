@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         timerText.text = timer.GetClock();
         if (Input.GetKeyDown(KeyCode.Escape)) { menuManager.TogglePause(); }
+        if (this.transform.position.y < -50) {menuManager.RestartLevel(); }
     }
 
     void FixedUpdate()
