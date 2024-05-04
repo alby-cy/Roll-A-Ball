@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour
     //Gets current scene name
     public string GetSceneName() { return SceneManager.GetActiveScene().name; }
 
-    //Pause Toggle
-    public void TogglePause() { isPaused = !isPaused; if (isPaused) { pauseMenu.SetActive(false); Time.timeScale = 1; } else { pauseMenu.SetActive(true); Time.timeScale = 0; } }
+    //Pause Toggle | if Main Menu is active scene, attempting to pause will guarantee that pause is not active
+    public void TogglePause() { if (SceneManager.GetActiveScene().name != "Title") { isPaused = !isPaused; if (isPaused) { pauseMenu.SetActive(false); Time.timeScale = 1; } else { pauseMenu.SetActive(true); Time.timeScale = 0; } }else{isPaused = false;} }
 
 }
