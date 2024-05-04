@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2120899710651845663}
   - component: {fileID: 473796334162619768}
   - component: {fileID: 1159627256345185084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,9 +146,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3742184062597879414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BowlingPin
-  m_TagString: Untagged
+  m_TagString: BowlingPins
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5655739589687760341}
   - component: {fileID: 3051701010521599175}
   - component: {fileID: 2541219712101420317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pTorus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 7435518803566809962}
   - component: {fileID: 1365570866140950685}
   - component: {fileID: 5946675050287857994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pTorus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

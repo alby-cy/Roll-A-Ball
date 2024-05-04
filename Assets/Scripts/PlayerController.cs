@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
+    private float initialSpeed = 1;
     private Rigidbody rb;
     private int pickUpCount;
     private int totalPickUps;
@@ -17,13 +18,16 @@ public class PlayerController : MonoBehaviour
 
     [Header("Bonus Collectables")]
     private int timeCoins = 0;
-    private int speedCoins = 0;
     private int sizeCoins = 0;
     public TMP_Text timeCoinCount;
     public int timeCoinValue = 5;
     public TMP_Text timeRemoved;
-    public TMP_Text speedCoinCount;
     public TMP_Text sizeCoinCount;
+
+    public float abilityDuration = 3f;
+    public float abilityTimer = 0f;
+    public bool abilityActive = false;
+    public int speedMultiplier = 1;
 
 
     [Header("UI")]
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour
         timer = FindObjectOfType<Timer>();
         timer.StartTimer();
         //reset bonus coins collected
-        timeCoins = 0; speedCoins = 0; sizeCoins = 0;
+        timeCoins = 0; sizeCoins = 0; initialSpeed = speed;
     }
     void resetUI()
     {
@@ -64,6 +68,7 @@ public class PlayerController : MonoBehaviour
         timerText.text = timer.GetClock();
         if (Input.GetKeyDown(KeyCode.Escape)) { menuManager.TogglePause(); }
         if (this.transform.position.y < -50) {menuManager.RestartLevel(); }
+
     }
 
     void FixedUpdate()
@@ -73,6 +78,13 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
         rb.AddForce(movement * speed);  
+
+        if (abilityActive == true & (abilityTimer < abilityDuration)) {
+            abilityTimer += Time.deltaTime;
+        }
+        if (abilityActive == true & (abilityTimer > (abilityDuration-0.2f))) {
+            speed = initialSpeed; abilityTimer = 0; abilityActive = false; //rb.velocity = new Vector3(0,0,3);
+        }
 
     }
 
@@ -97,6 +109,21 @@ public class PlayerController : MonoBehaviour
             timeCoins += 1;
             Destroy(other.gameObject);
             timer.RemoveTime(timeCoinValue);
+        }else if (other.tag == "SizeCoin")
+        {
+            sizeCoins += 1;
+            Destroy(other.gameObject);
+            transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+        }else if (other.tag == "SpeedBoost") 
+        {
+            abilityActive = true;
+            speed *= speedMultiplier;
+            if(abilityActive)
+            {
+                
+            }
+            else {  }
+            
         }
     }
 
@@ -124,12 +151,10 @@ public class PlayerController : MonoBehaviour
         if (timeCoins > 0) {
             timeCoinCount.color = Color.green;
         }
-        if (speedCoins > 0) {
-            speedCoinCount.color = Color.green;
-        }
         if (sizeCoins > 0) {
             sizeCoinCount.color = Color.green;
         }
+        sizeCoinCount.text = "x " + sizeCoins;
         timeCoinCount.text = "x " + timeCoins;
         timeRemoved.color = Color.red;
         timeRemoved.text = "- "+ (timeCoins * timeCoinValue) + "ˢ";

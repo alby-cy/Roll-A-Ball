@@ -9,6 +9,9 @@ TagManager:
   - Wall
   - Teleporter
   - TimeCoin
+  - SpeedBoost
+  - BowlingPins
+  - SizeCoin
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - PlayerLayer
   - Water
   - UI
-  - 
+  - BowlingPinLayer
   - 
   - 
   - 
